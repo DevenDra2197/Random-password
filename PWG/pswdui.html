@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="utils.css" rel="stylesheet" type="text/css" />
+
+    <meta charset="utf-8">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="text">
+            Random Password Generator
+        </div>
+        <div class="input-data">
+            <div class="display">
+                <input type="text">
+                <span class="far fa-copy" onclick="copy()"></span>
+                <span class="fas fa-copy" onclick="copy()"></span>
+            </div>
+            <button>Generate Password</button>
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+    //here we did not use external file javascript we write all js code here👍
+
+    const display = document.querySelector("input"),
+        button = document.querySelector("button"),
+        copyBtn = document.querySelector("span.far"),
+        copyActive = document.querySelector("span.fas");
+
+    let chars = "qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM!@#$%^&*()_+~`|}{[]:;?><,./-=";
+
+    button.onclick = () => {
+        let i,
+            randomPassword = "";
+        copyBtn.style.display = "block";
+        copyActive.style.display = "none";
+
+        // you can change length of password ex.=8,16,18 etc.
+
+        for (i = 0; i < 16; i++) {
+            randomPassword = randomPassword + chars.charAt(
+                Math.floor(Math.random() * chars.length)
+            );
+        }
+        display.value = randomPassword;
+    }
+
+    // copy fun is used for copy button
+    function copy() {
+        copyBtn.style.display = "none";
+        copyActive.style.display = "block";
+        display.select();
+        document.execCommand("copy");
+
+    }
+
+</script>
+
+</html>
